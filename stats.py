@@ -28,7 +28,7 @@ def get_specific_team(team_id): # Specific Team
         return None
 
 
-def get_all_players(page=1, per_page=25): # All players
+def get_all_players(page=1, per_page=9999): # All players
     base_url = f"https://www.balldontlie.io/api/v1/players"
     params = {"page": page, "per_page": per_page}
 
@@ -89,3 +89,12 @@ def get_all_games(date, page=1, per_page=30): # All games
     else:
         print(f"Error: Unable to fetch data. Status Code: {response.status_code}")
         return None, None
+    
+def get_search_results(player_name):
+    # Implement your search logic here
+    # For simplicity, this example uses the get_nba_players function
+    players, meta = get_all_players(page=1, per_page=9999)
+    if player_name:
+        # Filter players based on the input player_name
+        players = [player for player in players if player_name.lower() in f"{player['first_name']} {player['last_name']}".lower()]
+    return players
