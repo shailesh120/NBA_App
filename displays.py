@@ -77,3 +77,10 @@ def display_all_games(games): # All players
         print("-" * 30)
     else:
         print("No game information available.")
+
+def display_team_id(teams): # Team IDs
+    if teams:
+        for team in teams:
+            print(f"{team['id']}: {team['full_name']}")
+    else:
+        print("No team information available.")

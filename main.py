@@ -6,7 +6,7 @@ from datetime import date
 def main():
     again = "y"
     while again == "y":
-        answer = input("What info would you like to get (enter number): \n1) Specific Player \n2) Specific Team \n3) All Players \n4) All Teams \n5) Player Season Avg \n6) Games on today \n \n")
+        answer = input("What info would you like to get (enter number): \n1) Specific Player \n2) Specific Team \n3) All Players \n4) All Teams \n5) Player Season Avg \n6) Games on today \n7) List Teams \n \nEnter Number: ")
         if answer == "1": # Specific Player
             player_id = int(input("Enter Player ID: "))  
             player = get_specific_player(player_id)
@@ -32,14 +32,19 @@ def main():
             display_name(player)
             player_stats = get_season_avg(player_id, year)
             display_season_avg(player_stats)
-        elif answer == "6": # Season Avg
+        elif answer == "6": # Games Today
             today = date.today() 
             print(today)
             games, meta = get_all_games(today, page=1, per_page=30)
-            display_all_games(games)        
+            display_all_games(games)  
+        elif answer == "7": # All Teams
+            page = 1
+            per_page = 30
+            teams, meta = get_all_teams(page, per_page)
+            display_team_id(teams)      
         else:
             print("Not valid answer")
-        again = input("Do you have another request? (y/n) \n")      
+        again = input("\nDo you have another request? (y/n): ")      
     
 
 #----------------------------------------------------------------------------------------------------------------
