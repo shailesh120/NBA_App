@@ -66,7 +66,7 @@ def display_season_avg(player): # Season Avg
     else:
         print("No team information available.")
 
-def display_all_games(games): # All players
+def display_all_games(games): # All games
     if games:
         for game in games:
             print("-" * 30)
