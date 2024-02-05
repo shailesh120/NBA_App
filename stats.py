@@ -73,3 +73,19 @@ def get_season_avg(player_id, year): # Season Avg for one player
     else:
         print(f"Error: Unable to fetch data. Status Code: {response.status_code}")
         return None, None
+    
+def get_all_games(date, page=1, per_page=30): # All games
+    base_url = f"https://www.balldontlie.io/api/v1/games?dates[]={date}"
+    params = {"page": page, "per_page": per_page}
+
+    # Make API request to get player data
+    response = requests.get(base_url, params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+        games = data.get("data", [])
+        meta = data.get("meta", {})
+        return games, meta
+    else:
+        print(f"Error: Unable to fetch data. Status Code: {response.status_code}")
+        return None, None

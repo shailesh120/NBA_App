@@ -65,3 +65,15 @@ def display_season_avg(player): # Season Avg
         print("-" * 30)
     else:
         print("No team information available.")
+
+def display_all_games(games): # All players
+    if games:
+        for game in games:
+            print("-" * 30)
+            print(f"{game['home_team']['full_name']}: {game['home_team_score']}")
+            print(f"{game['visitor_team']['full_name']}: {game['visitor_team_score']}")
+            print(f"Quarter: {game['period']}")
+            print(f"{game['time']}")
+        print("-" * 30)
+    else:
+        print("No game information available.")
